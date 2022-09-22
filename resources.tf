@@ -2,7 +2,7 @@
 resource "azurerm_shared_image_gallery" "image-gallery_services" {
   for_each            = toset(local.service_location)
   name                = local.resource_name
-  resource_group_name = module.resource_group.name
+  resource_group_name = module.resource_group[each.value].name
   location            = module.resource_group[each.value].location
   description         = local.resource_description
 
